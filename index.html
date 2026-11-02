@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashok Collection | Premium Ethnic & Fashion Wear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                            gold: '#D4AF37',
+                            dark: '#18181b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Keyframe animations and styling */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-dark {
+            background: rgba(24, 24, 27, 0.92);
+            backdrop-filter: blur(14px);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 4px;
+        }
+        /* Modal Backdrop Fade */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        .modal-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+    <!-- Top Announcement Bar -->
+    <aside aria-label="Announcement" class="bg-gradient-to-r from-stone-900 via-brand-900 to-stone-900 text-amber-200 text-xs py-2 px-4 font-medium tracking-wide shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="inline-block px-2 py-0.5 bg-amber-400 text-stone-900 rounded font-bold uppercase text-[10px]">Grand Festive Offer</span>
+                <span id="site-announcement-text">✨ Exclusive Wedding & Festive Collections Now In Store!</span>
+            </div>
+            <div class="flex items-center space-x-6 text-stone-300">
+                <span class="hidden sm:inline"><i class="fa-solid fa-location-dot text-amber-400 mr-1.5"></i> <span id="site-top-address">Multiple Retail Outlets</span></span>
+                <a id="site-top-phone-link" href="tel:7905741648" class="hover:text-amber-300 transition flex items-center">
+                    <i class="fa-solid fa-phone mr-1.5 text-amber-400"></i> <span id="site-top-phone-display">+91 79057 41648</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sticky Main Navigation -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-stone-200 shadow-sm transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo (Dynamic Image or Icon) -->
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div id="site-logo-container" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-600 via-amber-500 to-brand-800 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                        <i id="site-logo-icon" class="fa-solid fa-gem text-xl"></i>
+                        <img id="site-logo-img" src="" alt="Brand Logo" class="w-full h-full object-cover hidden">
+                    </div>
+                    <div>
+                        <span id="site-brand-title" class="font-serif text-2xl font-bold tracking-tight text-stone-900 block group-hover:text-brand-600 transition">Ashok Collection</span>
+                        <span id="site-brand-tagline" class="text-[10px] uppercase font-semibold text-brand-600 tracking-widest block -mt-1">Luxury Attire & Sarees</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-700">
+                    <a href="#hero" class="hover:text-brand-600 transition-colors">Home</a>
+                    <a href="#catalog" class="hover:text-brand-600 transition-colors">Catalog</a>
+                    <a href="#about" class="hover:text-brand-600 transition-colors">Our Story</a>
+                    <a href="#locations" class="hover:text-brand-600 transition-colors">Store Locations</a>
+                    <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions: WhatsApp quick contact + Admin Login Button -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a id="header-whatsapp-btn" href="https://wa.me/917905741648?text=Hello%20Ashok%20Collection,%20I%20would%20like%20to%20inquire%20about%20your%20products." target="_blank" class="flex items-center px-4 py-2 text-xs font-semibold rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/20 transition-all hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-base mr-2"></i> WhatsApp Us
+                    </a>
+                    <button id="admin-header-btn" onclick="openAdminModal()" class="flex items-center px-4 py-2 text-xs font-semibold rounded-full border border-stone-300 hover:border-brand-600 hover:text-brand-600 text-stone-700 transition">
+                        <i class="fa-solid fa-user-shield mr-2 text-brand-600"></i>
+                        <span id="admin-btn-text">Owner Login</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-stone-700 p-2.5 rounded-lg hover:bg-stone-100 focus:outline-none" aria-label="Toggle Navigation">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-stone-200 bg-white/95 px-6 py-5 shadow-xl transition-all">
+            <div class="flex flex-col space-y-4 font-medium text-stone-700 text-base">
+                <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-brand-600 py-1">Home</a>
+                <a href="#catalog" onclick="toggleMobileMenu()" class="hover:text-brand-600 py-1">Collection Catalog</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="hover:text-brand-600 py-1">About Ashok Collection</a>
+                <a href="#locations" onclick="toggleMobileMenu()" class="hover:text-brand-600 py-1">Store Locations</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-brand-600 py-1">Contact Us</a>
+                <hr class="border-stone-200 my-2">
+                <div class="flex flex-col gap-3 pt-2">
+                    <a id="mobile-whatsapp-btn" href="https://wa.me/917905741648?text=Hello%20Ashok%20Collection,%20I%20have%20an%20inquiry." target="_blank" class="flex justify-center items-center py-2.5 px-4 rounded-xl bg-emerald-500 text-white text-sm font-semibold shadow">
+                        <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Chat with Ashok Collection
+                    </a>
+                    <button onclick="toggleMobileMenu(); openAdminModal();" class="flex justify-center items-center py-2.5 px-4 rounded-xl border border-stone-300 text-stone-700 text-sm font-semibold">
+                        <i class="fa-solid fa-user-lock mr-2 text-brand-600"></i> Owner Portal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative overflow-hidden pt-10 pb-20 lg:pt-16 lg:pb-28 bg-gradient-to-b from-brand-50/60 via-stone-50 to-stone-50">
+        <!-- Floating Decor Rings -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-100 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-24 w-80 h-80 bg-amber-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Intro -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-100 border border-brand-200 text-brand-800 text-xs font-semibold">
+                        <i class="fa-solid fa-crown text-amber-600"></i>
+                        <span>Handcrafted Elegance & Fine Silks</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-900 tracking-tight leading-tight">
+                        <span id="hero-headline-prefix">Timeless Ethnic Fashion at</span> <span id="hero-brand-name" class="bg-gradient-to-r from-brand-600 to-amber-600 bg-clip-text text-transparent">Ashok Collection</span>
+                    </h1>
+                    <p id="hero-description" class="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Discover handcrafted bridal wear, Banarasi silk sarees, designer kurtis, festive sherwanis, and casual attire. Order seamlessly directly on WhatsApp with instant delivery confirmation.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#catalog" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-amber-600 text-white font-semibold shadow-lg shadow-brand-500/30 hover:shadow-xl hover:scale-[1.02] transition-all flex items-center">
+                            Explore New Catalog <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                        <a href="#locations" class="px-7 py-3.5 rounded-xl border border-stone-300 hover:border-brand-600 text-stone-800 hover:text-brand-600 font-semibold bg-white shadow-sm transition-all flex items-center">
+                            <i class="fa-solid fa-shop mr-2 text-brand-600"></i> Visit Our Stores
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-stone-200/80 max-w-lg mx-auto lg:mx-0 text-stone-700">
+                        <div>
+                            <div class="text-2xl font-bold font-serif text-brand-700">10,000+</div>
+                            <div class="text-xs text-stone-500 font-medium">Happy Shoppers</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold font-serif text-brand-700">100%</div>
+                            <div class="text-xs text-stone-500 font-medium">Authentic Fabrics</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold font-serif text-brand-700">Direct</div>
+                            <div class="text-xs text-stone-500 font-medium">WhatsApp Orders</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Image Mosaic with Animation -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Main Card -->
+                        <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white animate-float">
+                            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Ethnic Saree Showcase" 
+                                 class="w-full h-[430px] object-cover object-top hover:scale-105 transition duration-700">
+                            <div class="p-4 bg-white/95 backdrop-blur-md flex items-center justify-between border-t border-stone-100">
+                                <div>
+                                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Featured Today</span>
+                                    <h4 class="font-bold text-stone-900 text-base">Banarasi Royal Silk Saree</h4>
+                                </div>
+                                <span class="text-lg font-bold text-stone-900">₹3,499</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 z-20 bg-white p-3.5 rounded-2xl shadow-xl border border-stone-100 flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-stone-500 uppercase font-semibold">Fast Checkout</p>
+                                <p class="text-xs font-bold text-stone-900">WhatsApp Instant Order</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Tag -->
+                        <div class="absolute -top-4 -right-4 z-20 bg-stone-900 text-amber-300 px-4 py-2 rounded-2xl shadow-lg border border-amber-400/30 text-xs font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-star text-amber-400"></i> 4.9 Star Rated
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog & Filters Section -->
+    <main id="catalog" class="py-16 bg-white flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-stone-200 gap-4">
+                <div>
+                    <div class="inline-flex items-center space-x-2 text-brand-600 font-semibold text-xs tracking-wider uppercase mb-1">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>Curated Showcase</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-900">Explore Ashok Collection</h2>
+                    <p class="text-stone-500 text-sm mt-1">Browse trending dresses, ethnic wear, sarees, and casuals with direct WhatsApp ordering.</p>
+                </div>
+
+                <!-- Admin Add Item Shortcut (Visible when logged in or clicked) -->
+                <div class="flex items-center space-x-3">
+                    <button id="quick-add-btn" onclick="openAdminModal('add-product')" class="hidden px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-xs shadow-md hover:bg-brand-700 transition">
+                        <i class="fa-solid fa-plus-circle mr-1.5"></i> Add New Product
+                    </button>
+                    <!-- Search Input -->
+                    <div class="relative w-full sm:w-64">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-stone-400 text-sm"></i>
+                        <input type="text" id="search-input" oninput="filterProducts()" placeholder="Search by name, fabric..." class="w-full pl-9 pr-4 py-2 border border-stone-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Tabs -->
+            <div class="flex overflow-x-auto space-x-2 pb-4 mb-8 no-scrollbar scroll-smooth" id="category-tabs">
+                <button onclick="setCategory('All')" class="cat-pill active-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-brand-600 text-white shadow-md shadow-brand-500/20 transition-all">All Collections</button>
+                <button onclick="setCategory('Sarees')" class="cat-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all">Sarees & Silks</button>
+                <button onclick="setCategory('Kurtis')" class="cat-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all">Kurtis & Suits</button>
+                <button onclick="setCategory('Ethnic Wear')" class="cat-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all">Festive & Ethnic</button>
+                <button onclick="setCategory('Men')" class="cat-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all">Men's Kurta & Shirts</button>
+                <button onclick="setCategory('Casuals')" class="cat-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all">Western & Casuals</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="no-products-msg" class="hidden text-center py-16 bg-stone-50 rounded-2xl border border-dashed border-stone-300">
+                <i class="fa-solid fa-shirt text-4xl text-stone-300 mb-3"></i>
+                <h3 class="text-base font-semibold text-stone-700">No matching apparel found</h3>
+                <p class="text-xs text-stone-500 mt-1">Try another category search or clear your keyword filter.</p>
+                <button onclick="resetFilters()" class="mt-4 px-4 py-2 text-xs font-medium rounded-lg bg-stone-800 text-white">Reset Filters</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Why Shop With Us Banner -->
+    <section class="py-14 bg-stone-100 border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left">
+                <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-brand-600 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-stone-900 text-sm">Fine Fabric Quality</h4>
+                        <p class="text-xs text-stone-500">Pure silks, cottons & chanderi weaves</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-stone-900 text-sm">WhatsApp Fast Order</h4>
+                        <p class="text-xs text-stone-500">Direct communication with store owner</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-stone-900 text-sm">Wholesale & Retail</h4>
+                        <p class="text-xs text-stone-500">Best competitive honest pricing</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-stone-200/60">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-stone-900 text-sm">Trusted Since Years</h4>
+                        <p class="text-xs text-stone-500">Thousands of delighted families</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Ashok Collection -->
+    <section id="about" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img class="rounded-2xl shadow-md w-full h-64 object-cover" src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80" alt="Boutique Sarees">
+                        <img class="rounded-2xl shadow-md w-full h-64 object-cover mt-8" src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80" alt="Fabrics">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-brand-600 text-white p-6 rounded-2xl shadow-xl max-w-xs hidden sm:block">
+                        <p class="font-serif text-2xl font-bold">100% Genuine</p>
+                        <p class="text-xs text-orange-100 mt-1">Direct artisan & manufacturer handpicked fashion at unmatchable retail prices.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-600 font-semibold text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-hand-sparkles"></i>
+                        <span>Heritage & Passion</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900 leading-tight">
+                        About Ashok Collection
+                    </h2>
+                    <p class="text-stone-600 leading-relaxed text-sm sm:text-base">
+                        At <strong class="text-stone-900">Ashok Collection</strong>, we believe that Indian clothing is not just fabric—it's an emotion, a tradition, and a reflection of grace. Founded with a vision to make premium designer ethnic wear and day-to-day fashion accessible to everyone, our store offers an ever-refreshing inventory.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed text-sm sm:text-base">
+                        From heavy bridal lehengas, authentic Banarasi and Kanjeevaram sarees to modern kurtis and men's ethnic wear, every product is personally curated for quality, color-fastness, and finesse.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <div class="flex items-center space-x-2 text-stone-800 text-sm font-semibold">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>Custom Sizing & Inquiries</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-stone-800 text-sm font-semibold">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>All-India Shipping Support</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-stone-800 text-sm font-semibold">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>Authentic Craftsmanship</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Locations Section -->
+    <section id="locations" class="py-16 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <div class="inline-flex items-center space-x-2 text-brand-600 font-semibold text-xs tracking-wider uppercase mb-1">
+                    <i class="fa-solid fa-store"></i>
+                    <span>Visit Us In Person</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-stone-900">Our Stores & Outlets</h2>
+                <p class="text-stone-500 text-sm mt-2">Come experience our rich fabrics, trial rooms, and warm hospitality at any of our outlets.</p>
+            </div>
+
+            <!-- Dynamic Store Location Cards -->
+            <div id="stores-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us & Inquiry Section -->
+    <section id="contact" class="py-16 bg-white border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-600 font-semibold text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Customer Support</span>
+                    </div>
+                    <h2 class="text-3xl font-serif font-bold text-stone-900">Get in Touch With Us</h2>
+                    <p class="text-stone-600 text-sm">Have a question about fabric availability, custom bridal orders, or bulk purchases? Reach out to owner directly or send a message.</p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-orange-100 text-brand-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Direct Phone & Inquiry</h4>
+                                <a id="contact-phone-link" href="tel:7905741648" class="text-stone-600 text-sm hover:text-brand-600 font-medium">+91 79057 41648</a>
+                                <p id="contact-timings-display" class="text-[11px] text-stone-400">Available: 10:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">WhatsApp Business Chat</h4>
+                                <a id="contact-whatsapp-link" href="https://wa.me/917905741648?text=Hello%20Ashok%20Collection,%20I%20have%20an%20inquiry." target="_blank" class="text-emerald-700 text-sm hover:underline font-semibold">+91 79057 41648 (Instant Reply)</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Support Email</h4>
+                                <a id="contact-email-link" href="mailto:ashokcollection.fashion@gmail.com" class="text-stone-600 text-sm hover:text-brand-600 font-medium">ashokcollection.fashion@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Main Head Office & Retail Hub</h4>
+                                <p id="contact-address-display" class="text-stone-600 text-sm">Ashok Collection Main Market Road, Lucknow / Uttar Pradesh, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact / Inquiry Form -->
+                <div class="lg:col-span-7 bg-stone-50 p-8 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-stone-900 mb-2">Send an Inquiry or Feedback</h3>
+                    <p class="text-xs text-stone-500 mb-6">You will be redirected straight to WhatsApp with your typed message for immediate priority answer.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-700 mb-1">Your Name *</label>
+                                <input type="text" id="contact-name" required placeholder="e.g. Heena Verma" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-700 mb-1">Phone / WhatsApp Number *</label>
+                                <input type="tel" id="contact-phone" required placeholder="e.g. 9876543210" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Interested In</label>
+                            <select id="contact-interest" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <option value="Sarees and Silks">Sarees & Heavy Silks</option>
+                                <option value="Designer Kurtis">Designer Kurtis & Suits</option>
+                                <option value="Bridal and Festive Lehengas">Bridal & Festive Lehengas</option>
+                                <option value="Mens Ethnic Wear">Men's Ethnic Wear</option>
+                                <option value="Bulk / Wholesale Inquiry">Bulk / Wholesale Inquiry</option>
+                                <option value="Store Visit or Timings">Store Visit & Locations</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Your Message / Requirement *</label>
+                            <textarea id="contact-msg" rows="4" required placeholder="Describe what style, budget, or design you are looking for..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Send Message on WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-300 pt-12 pb-8 border-t border-stone-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-stone-800">
+                <!-- Col 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div id="footer-logo-container" class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white overflow-hidden">
+                            <i id="footer-logo-icon" class="fa-solid fa-gem text-lg"></i>
+                            <img id="footer-logo-img" src="" alt="Brand Logo" class="w-full h-full object-cover hidden">
+                        </div>
+                        <span id="footer-brand-title" class="font-serif text-xl font-bold text-white tracking-tight">Ashok Collection</span>
+                    </div>
+                    <p id="footer-tagline-text" class="text-xs text-stone-400 leading-relaxed">
+                        Exquisite ethnic ensembles, handcrafted sarees, and vibrant fashion. Dedicated to elegance, tradition, and customer satisfaction.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-xs uppercase font-bold text-amber-400 tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#hero" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#catalog" class="hover:text-white transition">Full Catalog</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#locations" class="hover:text-white transition">Store Locations</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact & Inquiries</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-xs uppercase font-bold text-amber-400 tracking-wider mb-4">Categories</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#catalog" onclick="setCategory('Sarees')" class="hover:text-white transition">Banarasi & Designer Sarees</a></li>
+                        <li><a href="#catalog" onclick="setCategory('Kurtis')" class="hover:text-white transition">Party Wear Kurtis</a></li>
+                        <li><a href="#catalog" onclick="setCategory('Ethnic Wear')" class="hover:text-white transition">Bridal & Festive Wear</a></li>
+                        <li><a href="#catalog" onclick="setCategory('Men')" class="hover:text-white transition">Men's Kurta Pyjamas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="text-xs uppercase font-bold text-amber-400 tracking-wider mb-4">Store Direct Helpline</h4>
+                    <p class="text-xs text-stone-400 mb-2">Call or WhatsApp owner directly:</p>
+                    <a id="footer-helpline-phone" href="tel:7905741648" class="text-white font-bold text-base block hover:text-brand-500 transition mb-3">+91 79057 41648</a>
+                    <button onclick="openAdminModal()" class="inline-flex items-center text-xs text-stone-400 hover:text-amber-400 transition">
+                        <i class="fa-solid fa-lock mr-1.5 text-brand-600"></i> Owner Portal Access
+                    </button>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500">
+                <p>&copy; <span id="current-year"></span> <span id="footer-copy-brand">Ashok Collection</span>. All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0">Owner Helpline: <span id="footer-copy-phone">+91 79057 41648</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL & ORDER MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div id="product-modal-dialog" class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden modal-enter max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between p-4 border-b border-stone-100 bg-stone-50">
+                <div class="flex items-center space-x-2">
+                    <span id="modal-tag" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">Featured</span>
+                    <span id="modal-category" class="text-xs font-semibold text-brand-600">Category</span>
+                </div>
+                <button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-600 flex items-center justify-center transition" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Product Image Preview -->
+                <div class="rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center relative min-h-[280px]">
+                    <img id="modal-image" src="" alt="Product preview" class="w-full h-80 object-cover object-center">
+                    <span id="modal-discount" class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded-lg shadow">20% OFF</span>
+                </div>
+
+                <!-- Product Specifications & WhatsApp Form -->
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 id="modal-title" class="text-xl sm:text-2xl font-serif font-bold text-stone-900 leading-snug">Product Name</h3>
+                        <div class="flex items-baseline space-x-3 mt-2">
+                            <span id="modal-price" class="text-2xl font-bold text-brand-600">₹0</span>
+                            <span id="modal-mrp" class="text-sm text-stone-400 line-through">₹0</span>
+                        </div>
+                        <p id="modal-desc" class="text-stone-600 text-xs sm:text-sm mt-3 leading-relaxed">Product description goes here.</p>
+
+                        <!-- Size Selector -->
+                        <div class="mt-4">
+                            <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">Select Size</label>
+                            <div id="modal-sizes" class="flex flex-wrap gap-2">
+                                <!-- Sizes buttons injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div class="mt-4 flex items-center space-x-3">
+                            <label class="text-xs font-bold text-stone-700 uppercase tracking-wider">Quantity:</label>
+                            <div class="flex items-center border border-stone-300 rounded-lg overflow-hidden">
+                                <button onclick="adjustQty(-1)" class="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold">-</button>
+                                <span id="modal-qty" class="px-3 py-1 text-xs font-bold text-stone-800">1</span>
+                                <button onclick="adjustQty(1)" class="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct WhatsApp Order Trigger -->
+                    <div class="pt-4 border-t border-stone-100">
+                        <button onclick="orderSelectedProductViaWhatsApp()" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Order Now via WhatsApp</span>
+                        </button>
+                        <p class="text-[11px] text-stone-400 text-center mt-2 flex items-center justify-center">
+                            <i class="fa-solid fa-shield-halved mr-1 text-emerald-500"></i> Sends product photo & details straight to Owner's WhatsApp
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OWNER / ADMIN SUITE MODAL -->
+    <div id="admin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md hidden">
+        <div id="admin-modal-dialog" class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden modal-enter max-h-[92vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-5 border-b border-stone-200 bg-stone-900 text-white">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold">Ashok Collection Owner Portal</h3>
+                        <p class="text-[11px] text-stone-400">Inventory Management & Store Controls</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button id="admin-logout-btn" onclick="logoutAdmin()" class="hidden px-3 py-1 bg-red-600/90 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Logout
+                    </button>
+                    <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-300 flex items-center justify-center transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Login View (When NOT authenticated) -->
+            <div id="admin-login-view" class="p-8 max-w-md mx-auto w-full my-auto text-center">
+                <div class="w-16 h-16 rounded-3xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mx-auto mb-4 shadow-inner">
+                    <i class="fa-solid fa-shield-cat"></i>
+                </div>
+                <h4 class="text-2xl font-serif font-bold text-stone-900">Owner Verification</h4>
+                <p class="text-stone-500 text-xs mt-1 mb-6">Enter your registered Owner ID & Password to manage products, upload images via src, and update stores.</p>
+
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1">Owner Login ID / Mobile *</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-id-badge absolute left-3 top-3 text-stone-400 text-sm"></i>
+                            <input type="text" id="admin-id-input" required placeholder="7905741648" class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1">Secret Password *</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-key absolute left-3 top-3 text-stone-400 text-sm"></i>
+                            <input type="password" id="admin-pass-input" required placeholder="••••••••" class="w-full pl-9 pr-10 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 text-stone-400 hover:text-stone-600 text-xs">
+                                <i id="pass-eye-icon" class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <p id="admin-login-error" class="text-xs text-red-600 font-medium hidden text-center"></p>
+
+                    <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center">
+                        <i class="fa-solid fa-lock-open mr-2"></i> Verify & Open Dashboard
+                    </button>
+                </form>
+
+                <div class="mt-6 pt-4 border-t border-stone-100 text-[11px] text-stone-400">
+                    Protected portal for Ashok Collection administrator.
+                </div>
+            </div>
+
+            <!-- Dashboard View (When authenticated) -->
+            <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- Tabs within admin -->
+                <div class="flex border-b border-stone-200 space-x-2 sm:space-x-4 overflow-x-auto">
+                    <button onclick="switchAdminTab('products')" id="tab-btn-products" class="py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600 whitespace-nowrap">
+                        <i class="fa-solid fa-shirt mr-1.5"></i> Manage Products
+                    </button>
+                    <button onclick="switchAdminTab('add')" id="tab-btn-add" class="py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-transparent text-stone-500 hover:text-stone-700 whitespace-nowrap">
+                        <i class="fa-solid fa-plus-circle mr-1.5"></i> Add Product (Image SRC)
+                    </button>
+                    <button onclick="switchAdminTab('settings')" id="tab-btn-settings" class="py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-transparent text-stone-500 hover:text-stone-700 whitespace-nowrap">
+                        <i class="fa-solid fa-sliders mr-1.5"></i> Brand & Contact Settings
+                    </button>
+                    <button onclick="switchAdminTab('stores')" id="tab-btn-stores" class="py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-transparent text-stone-500 hover:text-stone-700 whitespace-nowrap">
+                        <i class="fa-solid fa-location-dot mr-1.5"></i> Store Outlets
+                    </button>
+                </div>
+
+                <!-- TAB 1: Product Management Table -->
+                <div id="admin-tab-products" class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-stone-900 text-sm">All Inventory Items (<span id="admin-product-count">0</span>)</h4>
+                        <button onclick="switchAdminTab('add')" class="px-3 py-1.5 bg-brand-600 text-white rounded-lg text-xs font-semibold hover:bg-brand-700 transition">
+                            + Add New Product
+                        </button>
+                    </div>
+
+                    <div class="border border-stone-200 rounded-2xl overflow-hidden bg-white">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-stone-600">
+                                <thead class="bg-stone-50 text-stone-700 uppercase font-semibold border-b border-stone-200">
+                                    <tr>
+                                        <th class="py-3 px-4">Item</th>
+                                        <th class="py-3 px-4">Category</th>
+                                        <th class="py-3 px-4">Price / MRP</th>
+                                        <th class="py-3 px-4">Sizes</th>
+                                        <th class="py-3 px-4 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-product-table-body" class="divide-y divide-stone-100">
+                                    <!-- Injected via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Add / Edit Product Form (Accepting Image SRC) -->
+                <div id="admin-tab-add" class="hidden space-y-4 bg-stone-50 p-6 rounded-2xl border border-stone-200">
+                    <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+                        <div>
+                            <h4 id="form-title" class="font-bold text-stone-900 text-base">Add New Product to Ashok Collection</h4>
+                            <p class="text-xs text-stone-500">Provide direct image source URL and product specs.</p>
+                        </div>
+                        <button id="cancel-edit-btn" onclick="resetProductForm()" class="hidden px-2.5 py-1 text-xs font-semibold text-stone-600 bg-stone-200 rounded-lg">Cancel Edit</button>
+                    </div>
+
+                <!-- TAB: BRAND & CONTACT SETTINGS (Website Data & Logo Editor) -->
+                <div id="admin-tab-settings" class="hidden space-y-6 bg-stone-50 p-6 rounded-2xl border border-stone-200">
+                    <div class="flex items-center justify-between pb-3 border-b border-stone-200">
+                        <div>
+                            <h4 class="font-bold text-stone-900 text-base">Website Branding & Contact Customizer</h4>
+                            <p class="text-xs text-stone-500">Update logo via image src, phone numbers, WhatsApp, and shop details. Updates instantly across the store.</p>
+                        </div>
+                        <button type="button" onclick="resetBrandSettingsToDefault()" class="px-3 py-1.5 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-lg text-xs font-semibold transition">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> Reset Defaults
+                        </button>
+                    </div>
+
+                    <form onsubmit="handleSaveBrandSettings(event)" class="space-y-6">
+                        <!-- LOGO SECTION -->
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 space-y-4 shadow-sm">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center">
+                                <i class="fa-solid fa-image mr-2"></i> Brand Logo Customization
+                            </h5>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                                <div class="md:col-span-2 space-y-2">
+                                    <label class="block text-xs font-semibold text-stone-700">Logo Image URL (src)</label>
+                                    <input type="url" id="setting-logo-url" oninput="previewLogoSettings(this.value)" placeholder="https://example.com/logo.png or leave empty to use stylish gem icon" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                    <p class="text-[11px] text-stone-400">Leave blank if you prefer the default golden gem brand crest icon.</p>
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-semibold text-stone-700 mb-1">Logo Preview</span>
+                                    <div class="w-16 h-16 mx-auto rounded-2xl border-2 border-dashed border-stone-300 p-1 flex items-center justify-center bg-stone-100 overflow-hidden">
+                                        <div id="setting-logo-preview" class="w-full h-full rounded-xl bg-gradient-to-br from-brand-600 to-amber-600 flex items-center justify-center text-white overflow-hidden">
+                                            <i id="setting-logo-preview-icon" class="fa-solid fa-gem text-xl"></i>
+                                            <img id="setting-logo-preview-img" src="" alt="preview" class="w-full h-full object-cover hidden">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BRAND TEXT & SLOGANS -->
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 space-y-4 shadow-sm">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center">
+                                <i class="fa-solid fa-pen-nib mr-2"></i> Brand Titles & Hero Headlines
+                            </h5>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Brand / Store Name *</label>
+                                    <input type="text" id="setting-brand-name" required class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Brand Tagline *</label>
+                                    <input type="text" id="setting-brand-tagline" required class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-700 mb-1">Top Announcement Ribbon Message</label>
+                                <input type="text" id="setting-announcement" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Hero Section Headline Prefix</label>
+                                    <input type="text" id="setting-hero-prefix" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Hero Section Sub-description</label>
+                                    <textarea id="setting-hero-desc" rows="2" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONTACT & WHATSAPP CHANNELS -->
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 space-y-4 shadow-sm">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-brand-600 flex items-center">
+                                <i class="fa-solid fa-address-book mr-2"></i> Contact & Direct WhatsApp Order Setup
+                            </h5>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">WhatsApp Order Number (Digits with Country Code) *</label>
+                                    <div class="relative">
+                                        <i class="fa-brands fa-whatsapp text-emerald-500 absolute left-3 top-3 text-sm"></i>
+                                        <input type="text" id="setting-whatsapp-num" required placeholder="917905741648" class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                    </div>
+                                    <p class="text-[10px] text-stone-400 mt-1">All 'Order Now' and inquiry buttons will direct here.</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Calling Phone Number *</label>
+                                    <div class="relative">
+                                        <i class="fa-solid fa-phone text-stone-400 absolute left-3 top-3 text-sm"></i>
+                                        <input type="text" id="setting-phone-display" required placeholder="+91 79057 41648" class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Support Email Address</label>
+                                    <input type="email" id="setting-email" placeholder="ashokcollection.fashion@gmail.com" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-700 mb-1">Opening Hours / Timings</label>
+                                    <input type="text" id="setting-timings" placeholder="10:00 AM - 09:30 PM (All 7 Days)" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-700 mb-1">Main Store Physical Address</label>
+                                <textarea id="setting-address" rows="2" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300 focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Action Submit -->
+                        <div class="flex justify-end gap-3 pt-2">
+                            <button type="submit" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center">
+                                <i class="fa-solid fa-check mr-2"></i> Save & Apply Changes Everywhere
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 3: Store Locations Management -->
+                <div id="admin-tab-stores" class="hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-stone-900 text-sm">Ashok Collection Stores (<span id="admin-store-count">0</span>)</h4>
+                        <button onclick="toggleStoreAddForm()" class="px-3 py-1.5 bg-brand-600 text-white rounded-lg text-xs font-semibold hover:bg-brand-700 transition">
+                            + Add Store Location
+                        </button>
+                    </div>
+
+                    <!-- Add Store Form (Toggleable) -->
+                    <div id="store-add-form" class="hidden bg-stone-50 p-4 rounded-2xl border border-stone-200">
+                        <h5 class="text-xs font-bold text-stone-800 mb-3">Add New Store Branch</h5>
+                        <form onsubmit="handleSaveStore(event)" class="space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="text" id="store-name" required placeholder="Outlet Name (e.g. Ashok Collection Flagship)" class="px-3 py-2 text-xs rounded-xl border border-stone-300">
+                                <input type="text" id="store-timing" required placeholder="Timings (e.g. 10:00 AM - 9:30 PM)" class="px-3 py-2 text-xs rounded-xl border border-stone-300">
+                            </div>
+                            <input type="text" id="store-phone" required placeholder="Store Phone (e.g. 7905741648)" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300">
+                            <textarea id="store-address" rows="2" required placeholder="Complete physical address..." class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300"></textarea>
+                            <input type="url" id="store-maps-url" placeholder="Google Maps share link (https://share.google/...)" class="w-full px-3 py-2 text-xs rounded-xl border border-stone-300">
+                            <div class="flex justify-end gap-2">
+                                <button type="button" onclick="toggleStoreAddForm()" class="px-3 py-1.5 text-xs bg-stone-200 rounded-lg">Cancel</button>
+                                <button type="submit" class="px-4 py-1.5 text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg">Save Store</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="admin-stores-list" class="space-y-3">
+                        <!-- Injected via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script & Logic -->
+    <script>
+        // Credential Constants
+        const OWNER_ID = "7905741648";
+        const OWNER_PASS = "heena@1290";
+
+        // Default Site Brand & Contact Settings
+        const DEFAULT_SETTINGS = {
+            brandName: "Ashok Collection",
+            brandTagline: "Luxury Attire & Sarees",
+            logoUrl: "", // blank uses stylized gem icon
+            announcement: "✨ Exclusive Wedding & Festive Collections Now In Store!",
+            heroPrefix: "Timeless Ethnic Fashion at",
+            heroDesc: "Discover handcrafted bridal wear, Banarasi silk sarees, designer kurtis, festive sherwanis, and casual attire. Order seamlessly directly on WhatsApp with instant delivery confirmation.",
+            phoneDisplay: "+91 79057 41648",
+            phoneCall: "7905741648",
+            whatsappNumber: "917905741648",
+            email: "ashokcollection.fashion@gmail.com",
+            timings: "10:00 AM - 09:30 PM (All 7 Days)",
+            address: "Ashok Collection Main Market Road, Lucknow / Uttar Pradesh, India"
+        };
+
+        // Default Initial Products (Persists to localStorage)
+        const DEFAULT_PRODUCTS = [
+            {
+                id: "prod-1",
+                title: "Royal Crimson Banarasi Silk Saree",
+                category: "Sarees",
+                price: 3499,
+                mrp: 5999,
+                tag: "Best Seller",
+                sizes: ["Free Size"],
+                image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+                description: "Handcrafted authentic Banarasi zari weave saree with opulent golden pallu and matching unstitched blouse piece. Perfect for weddings and grand festivities."
+            },
+            {
+                id: "prod-2",
+                title: "Floral Embroidered Chanderi Kurti Set",
+                category: "Kurtis",
+                price: 1899,
+                mrp: 2999,
+                tag: "Trending",
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80",
+                description: "Breathable Chanderi cotton kurti styled with subtle gota-patti border and matching organza dupatta with pant. Ideal for ceremonies and office wear."
+            },
+            {
+                id: "prod-3",
+                title: "Emerald Green Heritage Silk Saree",
+                category: "Sarees",
+                price: 4299,
+                mrp: 6899,
+                tag: "Festive Special",
+                sizes: ["Free Size"],
+                image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80",
+                description: "Pure rich Kanjeevaram inspired silk featuring temple motifs and pure copper zari borders. Comes with a rich brocade blouse fabric."
+            },
+            {
+                id: "prod-4",
+                title: "Men's Imperial Mustard Silk Kurta Pyjama",
+                category: "Men",
+                price: 2499,
+                mrp: 3999,
+                tag: "New Arrival",
+                sizes: ["38", "40", "42", "44"],
+                image: "https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=800&q=80",
+                description: "Premium Dupion art silk kurta with mandarin collar, self-tone thread work, paired with comfortable churidar pyjamas."
+            },
+            {
+                id: "prod-5",
+                title: "Bridal Heavy Zardozi Velvet Lehenga",
+                category: "Ethnic Wear",
+                price: 11999,
+                mrp: 18999,
+                tag: "Limited Edition",
+                sizes: ["Semi-Stitched"],
+                image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+                description: "Exquisite bridal lehenga choli embellished with hand zardozi, stone work, sequin accents and double net dupatta."
+            },
+            {
+                id: "prod-6",
+                title: "Pastel Pink Anarkali Party Gown",
+                category: "Kurtis",
+                price: 2799,
+                mrp: 4499,
+                tag: "Trending",
+                sizes: ["M", "L", "XL"],
+                image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+                description: "Flowing georgette Anarkali gown with fine flare, mirror work on neckline, and matching light dupatta."
+            },
+            {
+                id: "prod-7",
+                title: "Men's Classic Textured Linen Kurta",
+                category: "Men",
+                price: 1499,
+                mrp: 2299,
+                tag: "Best Seller",
+                sizes: ["M", "L", "XL", "XXL"],
+                image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=800&q=80",
+                description: "Lightweight 100% fine cotton-linen blend casual long kurta, tailored for festive gatherings and summer festivities."
+            },
+            {
+                id: "prod-8",
+                title: "Contemporary Indo-Western Co-ord Set",
+                category: "Casuals",
+                price: 1999,
+                mrp: 3200,
+                tag: "New Arrival",
+                sizes: ["S", "M", "L", "XL"],
+                image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
+                description: "Chic flared crop top with coordinated palazzos and a lightweight shrug. Modern ethnic vibe crafted in breathable rayon."
+            }
+        ];
+
+        // Default Store Locations (Persists to localStorage)
+        const DEFAULT_STORES = [
+            {
+                id: "store-1",
+                name: "Ashok Collection - Main Showroom",
+                address: "Shop No. 12-14, Central Market Complex, Near Clock Tower, Main Road, Lucknow, Uttar Pradesh - 226001",
+                phone: "+91 79057 41648",
+                timings: "10:30 AM - 09:30 PM (All 7 Days)",
+                mapsUrl: "https://share.google/kWvgWTPQqy2h4Cjl8"
+            },
+            {
+                id: "store-2",
+                name: "Ashok Collection - Sarees & Bridal Studio",
+                address: "1st Floor, Royal Cloth Bazaar, Fashion Avenue, Opp. Gandhi Park, Lucknow, Uttar Pradesh",
+                phone: "+91 79057 41648",
+                timings: "11:00 AM - 09:00 PM (Monday - Sunday)",
+                mapsUrl: "https://share.google/kWvgWTPQqy2h4Cjl8"
+            }
+        ];
+
+        // Global State
+        let products = [];
+        let stores = [];
+        let siteSettings = { ...DEFAULT_SETTINGS };
+        let activeCategory = "All";
+        let searchQuery = "";
+        let isOwnerLoggedIn = false;
+        let selectedProductForModal = null;
+        let selectedSize = "";
+        let selectedQty = 1;
+
+        // Initialize state on load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Load Site Settings from localStorage or fallback
+            const savedSettings = localStorage.getItem('ashok_site_settings');
+            if (savedSettings) {
+                try {
+                    siteSettings = { ...DEFAULT_SETTINGS, ...JSON.parse(savedSettings) };
+                } catch(e) {
+                    siteSettings = { ...DEFAULT_SETTINGS };
+                }
+            } else {
+                siteSettings = { ...DEFAULT_SETTINGS };
+                localStorage.setItem('ashok_site_settings', JSON.stringify(siteSettings));
+            }
+
+            // Load products from localStorage or fallback
+            const savedProducts = localStorage.getItem('ashok_collection_products');
+            if (savedProducts) {
+                try {
+                    products = JSON.parse(savedProducts);
+                } catch(e) {
+                    products = DEFAULT_PRODUCTS;
+                }
+            } else {
+                products = DEFAULT_PRODUCTS;
+                localStorage.setItem('ashok_collection_products', JSON.stringify(products));
+            }
+
+            // Load stores from localStorage or fallback
+            const savedStores = localStorage.getItem('ashok_collection_stores');
+            if (savedStores) {
+                try {
+                    stores = JSON.parse(savedStores);
+                } catch(e) {
+                    stores = DEFAULT_STORES;
+                }
+            } else {
+                stores = DEFAULT_STORES;
+                localStorage.setItem('ashok_collection_stores', JSON.stringify(stores));
+            }
+
+            // Apply brand settings to DOM
+            applyBrandSettingsToDOM();
+
+            // Check session login
+            if (sessionStorage.getItem('ashok_owner_logged_in') === 'true') {
+                isOwnerLoggedIn = true;
+                updateAdminAuthUI();
+            }
+
+            // Render view
+            renderProducts();
+            renderStores();
+        });
+
+        // Apply dynamic brand and contact settings across the page
+        function applyBrandSettingsToDOM() {
+            // Document Title
+            document.title = `${siteSettings.brandName} | ${siteSettings.brandTagline}`;
+
+            // Announcement
+            const annEl = document.getElementById('site-announcement-text');
+            if (annEl) annEl.textContent = siteSettings.announcement;
+
+            // Brand Titles & Tagline
+            const brandTitleEl = document.getElementById('site-brand-title');
+            if (brandTitleEl) brandTitleEl.textContent = siteSettings.brandName;
+
+            const brandTagEl = document.getElementById('site-brand-tagline');
+            if (brandTagEl) brandTagEl.textContent = siteSettings.brandTagline;
+
+            const heroPrefixEl = document.getElementById('hero-headline-prefix');
+            if (heroPrefixEl) heroPrefixEl.textContent = siteSettings.heroPrefix;
+
+            const heroBrandEl = document.getElementById('hero-brand-name');
+            if (heroBrandEl) heroBrandEl.textContent = siteSettings.brandName;
+
+            const heroDescEl = document.getElementById('hero-description');
+            if (heroDescEl) heroDescEl.textContent = siteSettings.heroDesc;
+
+            // Footer Texts
+            const footerTitleEl = document.getElementById('footer-brand-title');
+            if (footerTitleEl) footerTitleEl.textContent = siteSettings.brandName;
+
+            const footerTagEl = document.getElementById('footer-tagline-text');
+            if (footerTagEl) footerTagEl.textContent = `${siteSettings.brandTagline}. Dedicated to elegance, tradition, and customer satisfaction.`;
+
+            const footerCopyBrand = document.getElementById('footer-copy-brand');
+            if (footerCopyBrand) footerCopyBrand.textContent = siteSettings.brandName;
+
+            // Logos in Navigation and Footer
+            updateLogoElements(siteSettings.logoUrl);
+
+            // Phone numbers & links
+            const topPhoneDisplay = document.getElementById('site-top-phone-display');
+            if (topPhoneDisplay) topPhoneDisplay.textContent = siteSettings.phoneDisplay;
+
+            const topPhoneLink = document.getElementById('site-top-phone-link');
+            if (topPhoneLink) topPhoneLink.href = `tel:${siteSettings.phoneCall || siteSettings.whatsappNumber}`;
+
+            const topAddress = document.getElementById('site-top-address');
+            if (topAddress) topAddress.textContent = siteSettings.address.split(',')[0] || "Multiple Retail Outlets";
+
+            const contactPhoneLink = document.getElementById('contact-phone-link');
+            if (contactPhoneLink) {
+                contactPhoneLink.textContent = siteSettings.phoneDisplay;
+                contactPhoneLink.href = `tel:${siteSettings.phoneCall || siteSettings.whatsappNumber}`;
+            }
+
+            const footerHelplinePhone = document.getElementById('footer-helpline-phone');
+            if (footerHelplinePhone) {
+                footerHelplinePhone.textContent = siteSettings.phoneDisplay;
+                footerHelplinePhone.href = `tel:${siteSettings.phoneCall || siteSettings.whatsappNumber}`;
+            }
+
+            const footerCopyPhone = document.getElementById('footer-copy-phone');
+            if (footerCopyPhone) footerCopyPhone.textContent = siteSettings.phoneDisplay;
+
+            // WhatsApp direct links
+            const headerWaBtn = document.getElementById('header-whatsapp-btn');
+            if (headerWaBtn) {
+                headerWaBtn.href = `https://wa.me/${siteSettings.whatsappNumber}?text=Hello%20${encodeURIComponent(siteSettings.brandName)},%20I%20would%20like%20to%20inquire%20about%20your%20products.`;
+            }
+
+            const mobileWaBtn = document.getElementById('mobile-whatsapp-btn');
+            if (mobileWaBtn) {
+                mobileWaBtn.href = `https://wa.me/${siteSettings.whatsappNumber}?text=Hello%20${encodeURIComponent(siteSettings.brandName)},%20I%20have%20an%20inquiry.`;
+            }
+
+            const contactWaLink = document.getElementById('contact-whatsapp-link');
+            if (contactWaLink) {
+                contactWaLink.textContent = `${siteSettings.phoneDisplay} (Instant Reply)`;
+                contactWaLink.href = `https://wa.me/${siteSettings.whatsappNumber}?text=Hello%20${encodeURIComponent(siteSettings.brandName)},%20I%20have%20an%20inquiry.`;
+            }
+
+            // Email & Address
+            const contactEmailLink = document.getElementById('contact-email-link');
+            if (contactEmailLink) {
+                contactEmailLink.textContent = siteSettings.email;
+                contactEmailLink.href = `mailto:${siteSettings.email}`;
+            }
+
+            const contactTimingsDisplay = document.getElementById('contact-timings-display');
+            if (contactTimingsDisplay) {
+                contactTimingsDisplay.textContent = `Available: ${siteSettings.timings}`;
+            }
+
+            const contactAddressDisplay = document.getElementById('contact-address-display');
+            if (contactAddressDisplay) {
+                contactAddressDisplay.textContent = siteSettings.address;
+            }
+        }
+
+        // Helper to switch between custom logo src and default icon
+        function updateLogoElements(logoUrl) {
+            const navIcon = document.getElementById('site-logo-icon');
+            const navImg = document.getElementById('site-logo-img');
+            const footerIcon = document.getElementById('footer-logo-icon');
+            const footerImg = document.getElementById('footer-logo-img');
+
+            if (logoUrl && logoUrl.startsWith('http')) {
+                if (navImg) {
+                    navImg.src = logoUrl;
+                    navImg.classList.remove('hidden');
+                    if (navIcon) navIcon.classList.add('hidden');
+                }
+                if (footerImg) {
+                    footerImg.src = logoUrl;
+                    footerImg.classList.remove('hidden');
+                    if (footerIcon) footerIcon.classList.add('hidden');
+                }
+            } else {
+                if (navImg) navImg.classList.add('hidden');
+                if (navIcon) navIcon.classList.remove('hidden');
+                if (footerImg) footerImg.classList.add('hidden');
+                if (footerIcon) footerIcon.classList.remove('hidden');
+            }
+        }
+
+        // Live preview of logo inside the admin settings form
+        function previewLogoSettings(url) {
+            const icon = document.getElementById('setting-logo-preview-icon');
+            const img = document.getElementById('setting-logo-preview-img');
+            if (url && url.startsWith('http')) {
+                img.src = url;
+                img.classList.remove('hidden');
+                icon.classList.add('hidden');
+                img.onerror = () => {
+                    img.classList.add('hidden');
+                    icon.classList.remove('hidden');
+                };
+            } else {
+                img.classList.add('hidden');
+                icon.classList.remove('hidden');
+            }
+        }
+
+        // Populate Brand Settings Form
+        function populateBrandSettingsForm() {
+            document.getElementById('setting-logo-url').value = siteSettings.logoUrl || '';
+            document.getElementById('setting-brand-name').value = siteSettings.brandName || '';
+            document.getElementById('setting-brand-tagline').value = siteSettings.brandTagline || '';
+            document.getElementById('setting-announcement').value = siteSettings.announcement || '';
+            document.getElementById('setting-hero-prefix').value = siteSettings.heroPrefix || '';
+            document.getElementById('setting-hero-desc').value = siteSettings.heroDesc || '';
+            document.getElementById('setting-whatsapp-num').value = siteSettings.whatsappNumber || '';
+            document.getElementById('setting-phone-display').value = siteSettings.phoneDisplay || '';
+            document.getElementById('setting-email').value = siteSettings.email || '';
+            document.getElementById('setting-timings').value = siteSettings.timings || '';
+            document.getElementById('setting-address').value = siteSettings.address || '';
+
+            previewLogoSettings(siteSettings.logoUrl);
+        }
+
+        // Save Brand & Contact Settings
+        function handleSaveBrandSettings(e) {
+            e.preventDefault();
+            siteSettings.logoUrl = document.getElementById('setting-logo-url').value.trim();
+            siteSettings.brandName = document.getElementById('setting-brand-name').value.trim();
+            siteSettings.brandTagline = document.getElementById('setting-brand-tagline').value.trim();
+            siteSettings.announcement = document.getElementById('setting-announcement').value.trim();
+            siteSettings.heroPrefix = document.getElementById('setting-hero-prefix').value.trim();
+            siteSettings.heroDesc = document.getElementById('setting-hero-desc').value.trim();
+
+            const waNumRaw = document.getElementById('setting-whatsapp-num').value.trim().replace(/\D/g, '');
+            siteSettings.whatsappNumber = waNumRaw || "917905741648";
+            siteSettings.phoneDisplay = document.getElementById('setting-phone-display').value.trim();
+            siteSettings.phoneCall = siteSettings.phoneDisplay.replace(/\D/g, '');
+            siteSettings.email = document.getElementById('setting-email').value.trim();
+            siteSettings.timings = document.getElementById('setting-timings').value.trim();
+            siteSettings.address = document.getElementById('setting-address').value.trim();
+
+            // Save to localStorage
+            localStorage.setItem('ashok_site_settings', JSON.stringify(siteSettings));
+
+            // Re-apply immediately
+            applyBrandSettingsToDOM();
+            showToast("Brand details & contact info updated successfully!");
+        }
+
+        function resetBrandSettingsToDefault() {
+            if (!window.confirm("Restore default brand identity, logos, and contact numbers?")) return;
+            siteSettings = { ...DEFAULT_SETTINGS };
+            localStorage.setItem('ashok_site_settings', JSON.stringify(siteSettings));
+            populateBrandSettingsForm();
+            applyBrandSettingsToDOM();
+            showToast("Default store settings restored.");
+        }
+
+        // WhatsApp Direct Order Trigger (Dynamically uses the configured WhatsApp number)
+        function orderSelectedProductViaWhatsApp() {
+            if (!selectedProductForModal) return;
+            const p = selectedProductForModal;
+            const targetWhatsApp = siteSettings.whatsappNumber || "917905741648";
+            
+            const message = `*NEW ORDER INQUIRY - ${siteSettings.brandName.toUpperCase()}*\n` +
+                            `------------------------------------\n` +
+                            `*Item:* ${p.title}\n` +
+                            `*Category:* ${p.category}\n` +
+                            `*Price:* ₹${p.price.toLocaleString('en-IN')} (Qty: ${selectedQty})\n` +
+                            `*Selected Size:* ${selectedSize}\n` +
+                            `*Total Amount:* ₹${(p.price * selectedQty).toLocaleString('en-IN')}\n` +
+                            `*Product Image Link:* ${p.image}\n` +
+                            `------------------------------------\n` +
+                            `Please confirm fabric availability and share dispatch details. Thank you!`;
+
+            const waLink = `https://wa.me/${targetWhatsApp}?text=${encodeURIComponent(message)}`;
+            window.open(waLink, '_blank');
+            closeProductModal();
+        }
+
+        // Tab Switcher inside Admin
+        function switchAdminTab(tab) {
+            const tabProducts = document.getElementById('admin-tab-products');
+            const tabAdd = document.getElementById('admin-tab-add');
+            const tabSettings = document.getElementById('admin-tab-settings');
+            const tabStores = document.getElementById('admin-tab-stores');
+
+            const btnProducts = document.getElementById('tab-btn-products');
+            const btnAdd = document.getElementById('tab-btn-add');
+            const btnSettings = document.getElementById('tab-btn-settings');
+            const btnStores = document.getElementById('tab-btn-stores');
+
+            [tabProducts, tabAdd, tabSettings, tabStores].forEach(el => el.classList.add('hidden'));
+            [btnProducts, btnAdd, btnSettings, btnStores].forEach(btn => {
+                btn.className = "py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-transparent text-stone-500 hover:text-stone-700 whitespace-nowrap";
+            });
+
+            if (tab === 'products') {
+                tabProducts.classList.remove('hidden');
+                btnProducts.className = "py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600 whitespace-nowrap";
+                renderAdminProductsTable();
+            } else if (tab === 'add') {
+                tabAdd.classList.remove('hidden');
+                btnAdd.className = "py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600 whitespace-nowrap";
+            } else if (tab === 'settings') {
+                tabSettings.classList.remove('hidden');
+                btnSettings.className = "py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600 whitespace-nowrap";
+                populateBrandSettingsForm();
+            } else if (tab === 'stores') {
+                tabStores.classList.remove('hidden');
+                btnStores.className = "py-2 px-3 sm:px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600 whitespace-nowrap";
+                renderAdminStoresList();
+            }
+        }
+
+        // Contact Form Submission (Redirects straight to WhatsApp)
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const phone = document.getElementById('contact-phone').value.trim();
+            const interest = document.getElementById('contact-interest').value;
+            const msg = document.getElementById('contact-msg').value.trim();
+            const targetWhatsApp = siteSettings.whatsappNumber || "917905741648";
+
+            const inquiryText = `*NEW WEBSITE INQUIRY - ${siteSettings.brandName.toUpperCase()}*\n` +
+                                `------------------------------------\n` +
+                                `*Customer Name:* ${name}\n` +
+                                `*Customer Phone:* ${phone}\n` +
+                                `*Interested Category:* ${interest}\n` +
+                                `*Message / Requirement:*\n${msg}\n` +
+                                `------------------------------------\n` +
+                                `Sent via ${siteSettings.brandName} Online Storefront.`;
+
+            const waUrl = `https://wa.me/${targetWhatsApp}?text=${encodeURIComponent(inquiryText)}`;
+            window.open(waUrl, '_blank');
+
+            showToast("Opening WhatsApp with your inquiry message...");
+            e.target.reset();
+        }
+
+        // UI Toast Notification helper
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const isSuccess = type === 'success';
+            toast.className = `px-4 py-3 rounded-2xl shadow-xl flex items-center space-x-3 text-white text-xs font-semibold pointer-events-auto transform transition-all duration-300 translate-y-2 opacity-0 ${isSuccess ? 'bg-stone-900 border-l-4 border-emerald-500' : 'bg-red-900 border-l-4 border-red-500'}`;
+            
+            toast.innerHTML = `
+                <i class="fa-solid ${isSuccess ? 'fa-circle-check text-emerald-400' : 'fa-circle-exclamation text-red-400'} text-base"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3200);
+        }
+
+        // Render Catalog Products
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            const noMsg = document.getElementById('no-products-msg');
+            
+            const filtered = products.filter(item => {
+                const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
+                const matchesQuery = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                     item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                     item.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noMsg.classList.remove('hidden');
+                return;
+            }
+
+            noMsg.classList.add('hidden');
+            grid.innerHTML = filtered.map(p => {
+                const discount = p.mrp && p.mrp > p.price 
+                    ? Math.round(((p.mrp - p.price) / p.mrp) * 100) 
+                    : 0;
+
+                return `
+                <div class="group bg-white rounded-3xl border border-stone-200/90 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <!-- Image Area -->
+                    <div class="relative overflow-hidden bg-stone-100 aspect-[3/4] cursor-pointer" onclick="openProductModal('${p.id}')">
+                        <img src="${p.image}" alt="${p.title}" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x800/f5ebe0/7c2d12?text=${encodeURIComponent(p.title)}';" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        
+                        <!-- Badges -->
+                        <div class="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
+                            ${p.tag ? `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase bg-white/95 text-brand-900 shadow-sm">${p.tag}</span>` : ''}
+                            ${discount > 0 ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-600 text-white shadow-sm">${discount}% OFF</span>` : ''}
+                        </div>
+
+                        <!-- Hover quick view button -->
+                        <div class="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 rounded-full bg-white text-stone-900 text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                <i class="fa-regular fa-eye mr-1"></i> View Details
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Details Area -->
+                    <div class="p-5 flex flex-col flex-1 justify-between">
+                        <div>
+                            <div class="text-[11px] font-semibold uppercase text-brand-600 tracking-wider mb-1">${p.category}</div>
+                            <h3 class="font-bold text-stone-900 text-base line-clamp-1 group-hover:text-brand-600 transition" title="${p.title}">
+                                ${p.title}
+                            </h3>
+                            <p class="text-xs text-stone-500 mt-1 line-clamp-2">${p.description}</p>
+                            
+                            <!-- Available Sizes display -->
+                            <div class="mt-3 flex flex-wrap gap-1">
+                                ${(p.sizes || []).map(sz => `<span class="px-1.5 py-0.5 text-[10px] bg-stone-100 rounded text-stone-600 border border-stone-200">${sz}</span>`).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Price and WhatsApp Order Action -->
+                        <div class="pt-4 mt-3 border-t border-stone-100 flex items-center justify-between gap-2">
+                            <div>
+                                <div class="text-lg font-bold text-stone-900">₹${p.price.toLocaleString('en-IN')}</div>
+                                ${p.mrp ? `<div class="text-[11px] text-stone-400 line-through">₹${p.mrp.toLocaleString('en-IN')}</div>` : ''}
+                            </div>
+                            
+                            <button onclick="quickOrderWhatsApp('${p.id}')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/20 flex items-center space-x-1.5 transition active:scale-95">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>Order</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Render Store Locations
+        function renderStores() {
+            const container = document.getElementById('stores-container');
+            container.innerHTML = stores.map(st => `
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-stone-900">${st.name}</h3>
+                                <p class="text-xs text-brand-600 font-semibold"><i class="fa-solid fa-clock mr-1"></i> ${st.timings}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-stone-600 text-xs sm:text-sm">
+                        <p class="flex items-start">
+                            <i class="fa-solid fa-map-pin text-stone-400 mt-1 mr-2.5 shrink-0"></i>
+                            <span>${st.address}</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fa-solid fa-phone text-stone-400 mr-2.5 shrink-0"></i>
+                            <a href="tel:${st.phone}" class="hover:text-brand-600 font-semibold">${st.phone}</a>
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-stone-100 flex flex-wrap gap-3">
+                        <a href="${st.mapsUrl || 'https://share.google/kWvgWTPQqy2h4Cjl8'}" target="_blank" class="flex-1 min-w-[140px] text-center px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold transition flex items-center justify-center">
+                            <i class="fa-solid fa-diamond-turn-right mr-2 text-amber-400"></i> Get Directions
+                        </a>
+                        <a href="https://wa.me/917905741648?text=Hello%20Ashok%20Collection,%20I%20am%20visiting%20your%20${encodeURIComponent(st.name)}." target="_blank" class="px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold border border-emerald-200 transition flex items-center">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 mr-1.5"></i> Ask Outlet
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Also refresh admin stores list
+            renderAdminStoresList();
+        }
+
+        // Category Switcher
+        function setCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                if (btn.textContent.trim().includes(cat) || (cat === 'All' && btn.textContent.trim().includes('All'))) {
+                    btn.className = "cat-pill active-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-brand-600 text-white shadow-md shadow-brand-500/20 transition-all";
+                } else {
+                    btn.className = "cat-pill whitespace-nowrap px-5 py-2.5 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-all";
+                }
+            });
+            renderProducts();
+        }
+
+        // Product Search Filter
+        function filterProducts() {
+            searchQuery = document.getElementById('search-input').value.trim();
+            renderProducts();
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = "";
+            searchQuery = "";
+            setCategory('All');
+        }
+
+        // PRODUCT DETAIL MODAL LOGIC
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            selectedProductForModal = product;
+            selectedQty = 1;
+            selectedSize = (product.sizes && product.sizes.length > 0) ? product.sizes[0] : "Free Size";
+
+            document.getElementById('modal-title').textContent = product.title;
+            document.getElementById('modal-category').textContent = product.category;
+            document.getElementById('modal-tag').textContent = product.tag || 'Special';
+            document.getElementById('modal-price').textContent = `₹${product.price.toLocaleString('en-IN')}`;
+            document.getElementById('modal-desc').textContent = product.description;
+            document.getElementById('modal-qty').textContent = selectedQty;
+
+            const modalImg = document.getElementById('modal-image');
+            modalImg.src = product.image;
+            modalImg.onerror = function() {
+                this.src = `https://placehold.co/600x600/f5ebe0/7c2d12?text=${encodeURIComponent(product.title)}`;
+            };
+
+            const mrpEl = document.getElementById('modal-mrp');
+            const discEl = document.getElementById('modal-discount');
+            if (product.mrp && product.mrp > product.price) {
+                mrpEl.textContent = `MRP: ₹${product.mrp.toLocaleString('en-IN')}`;
+                mrpEl.classList.remove('hidden');
+                const disc = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+                discEl.textContent = `${disc}% OFF`;
+                discEl.classList.remove('hidden');
+            } else {
+                mrpEl.classList.add('hidden');
+                discEl.classList.add('hidden');
+            }
+
+            // Render Size buttons in modal
+            const sizesContainer = document.getElementById('modal-sizes');
+            sizesContainer.innerHTML = (product.sizes || ['Free Size']).map(s => `
+                <button type="button" onclick="selectModalSize('${s}')" class="size-btn px-3 py-1.5 text-xs font-semibold rounded-lg border transition ${s === selectedSize ? 'bg-stone-900 text-white border-stone-900' : 'bg-white text-stone-700 border-stone-300 hover:border-stone-400'}">
+                    ${s}
+                </button>
+            `).join('');
+
+            const modal = document.getElementById('product-modal');
+            const dialog = document.getElementById('product-modal-dialog');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                dialog.classList.add('modal-active');
+            }, 10);
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            const dialog = document.getElementById('product-modal-dialog');
+            dialog.classList.remove('modal-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 250);
+        }
+
+        function selectModalSize(size) {
+            selectedSize = size;
+            document.querySelectorAll('#modal-sizes .size-btn').forEach(btn => {
+                if (btn.textContent.trim() === size) {
+                    btn.className = "size-btn px-3 py-1.5 text-xs font-semibold rounded-lg border transition bg-stone-900 text-white border-stone-900";
+                } else {
+                    btn.className = "size-btn px-3 py-1.5 text-xs font-semibold rounded-lg border transition bg-white text-stone-700 border-stone-300 hover:border-stone-400";
+                }
+            });
+        }
+
+        function adjustQty(delta) {
+            selectedQty = Math.max(1, selectedQty + delta);
+            document.getElementById('modal-qty').textContent = selectedQty;
+        }
+
+        // WhatsApp Direct Order Trigger
+        function orderSelectedProductViaWhatsApp() {
+            if (!selectedProductForModal) return;
+            const p = selectedProductForModal;
+            
+            const message = `*NEW ORDER INQUIRY - ASHOK COLLECTION*\n` +
+                            `------------------------------------\n` +
+                            `*Item:* ${p.title}\n` +
+                            `*Category:* ${p.category}\n` +
+                            `*Price:* ₹${p.price.toLocaleString('en-IN')} (Qty: ${selectedQty})\n` +
+                            `*Selected Size:* ${selectedSize}\n` +
+                            `*Total Amount:* ₹${(p.price * selectedQty).toLocaleString('en-IN')}\n` +
+                            `*Product Image Link:* ${p.image}\n` +
+                            `------------------------------------\n` +
+                            `Please confirm fabric availability and share dispatch details. Thank you!`;
+
+            const waLink = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(message)}`;
+            window.open(waLink, '_blank');
+            closeProductModal();
+        }
+
+        function quickOrderWhatsApp(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            openProductModal(productId);
+        }
+
+        // OWNER / ADMIN SUITE LOGIC
+        function openAdminModal(defaultTab = 'products') {
+            const modal = document.getElementById('admin-modal');
+            const dialog = document.getElementById('admin-modal-dialog');
+            modal.classList.remove('hidden');
+
+            if (isOwnerLoggedIn) {
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                document.getElementById('admin-logout-btn').classList.remove('hidden');
+                renderAdminProductsTable();
+                renderAdminStoresList();
+                if (defaultTab === 'add-product') {
+                    switchAdminTab('add');
+                }
+            } else {
+                document.getElementById('admin-login-view').classList.remove('hidden');
+                document.getElementById('admin-dashboard-view').classList.add('hidden');
+                document.getElementById('admin-logout-btn').classList.add('hidden');
+            }
+
+            setTimeout(() => {
+                dialog.classList.add('modal-active');
+            }, 10);
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            const dialog = document.getElementById('admin-modal-dialog');
+            dialog.classList.remove('modal-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 250);
+        }
+
+        function togglePasswordVisibility() {
+            const input = document.getElementById('admin-pass-input');
+            const icon = document.getElementById('pass-eye-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-regular fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-regular fa-eye';
+            }
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const idInput = document.getElementById('admin-id-input').value.trim();
+            const passInput = document.getElementById('admin-pass-input').value.trim();
+            const errorEl = document.getElementById('admin-login-error');
+
+            if (idInput === OWNER_ID && passInput === OWNER_PASS) {
+                isOwnerLoggedIn = true;
+                sessionStorage.setItem('ashok_owner_logged_in', 'true');
+                errorEl.classList.add('hidden');
+                updateAdminAuthUI();
+                openAdminModal();
+                showToast("Welcome back, Owner Heena & Ashok Collection team!");
+            } else {
+                errorEl.textContent = "Invalid Owner ID or Password. Please check and retry.";
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            isOwnerLoggedIn = false;
+            sessionStorage.removeItem('ashok_owner_logged_in');
+            updateAdminAuthUI();
+            closeAdminModal();
+            showToast("Owner logged out safely.");
+        }
+
+        function updateAdminAuthUI() {
+            const btnText = document.getElementById('admin-btn-text');
+            const quickAdd = document.getElementById('quick-add-btn');
+            if (isOwnerLoggedIn) {
+                btnText.textContent = "Owner Dashboard";
+                quickAdd.classList.remove('hidden');
+            } else {
+                btnText.textContent = "Owner Login";
+                quickAdd.classList.add('hidden');
+            }
+        }
+
+        function switchAdminTab(tab) {
+            const tabProducts = document.getElementById('admin-tab-products');
+            const tabAdd = document.getElementById('admin-tab-add');
+            const tabStores = document.getElementById('admin-tab-stores');
+
+            const btnProducts = document.getElementById('tab-btn-products');
+            const btnAdd = document.getElementById('tab-btn-add');
+            const btnStores = document.getElementById('tab-btn-stores');
+
+            [tabProducts, tabAdd, tabStores].forEach(el => el.classList.add('hidden'));
+            [btnProducts, btnAdd, btnStores].forEach(btn => {
+                btn.className = "py-2 px-4 text-xs font-bold border-b-2 border-transparent text-stone-500 hover:text-stone-700";
+            });
+
+            if (tab === 'products') {
+                tabProducts.classList.remove('hidden');
+                btnProducts.className = "py-2 px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600";
+                renderAdminProductsTable();
+            } else if (tab === 'add') {
+                tabAdd.classList.remove('hidden');
+                btnAdd.className = "py-2 px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600";
+            } else if (tab === 'stores') {
+                tabStores.classList.remove('hidden');
+                btnStores.className = "py-2 px-4 text-xs font-bold border-b-2 border-brand-600 text-brand-600";
+                renderAdminStoresList();
+            }
+        }
+
+        // Live image preview in admin form
+        function previewImageInput(src) {
+            const previewImg = document.getElementById('live-img-preview');
+            if (src && src.startsWith('http')) {
+                previewImg.src = src;
+                previewImg.onerror = function() {
+                    this.src = 'https://placehold.co/150x150/ef4444/ffffff?text=Invalid+Image+SRC';
+                };
+            } else {
+                previewImg.src = 'https://placehold.co/150x150/f97316/ffffff?text=Image+Preview';
+            }
+        }
+
+        // Save / Update Product
+        function handleSaveProduct(e) {
+            e.preventDefault();
+            const editId = document.getElementById('edit-product-id').value;
+            const title = document.getElementById('prod-title').value.trim();
+            const category = document.getElementById('prod-category').value;
+            const imgSrc = document.getElementById('prod-img-src').value.trim();
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const mrp = parseFloat(document.getElementById('prod-mrp').value) || (price * 1.3);
+            const tag = document.getElementById('prod-tag').value;
+            const sizesRaw = document.getElementById('prod-sizes').value.trim();
+            const desc = document.getElementById('prod-desc').value.trim();
+
+            const sizesArray = sizesRaw.split(',').map(s => s.trim()).filter(Boolean);
+
+            if (editId) {
+                // Update existing
+                const index = products.findIndex(p => p.id === editId);
+                if (index !== -1) {
+                    products[index] = {
+                        ...products[index],
+                        title,
+                        category,
+                        image: imgSrc,
+                        price,
+                        mrp,
+                        tag,
+                        sizes: sizesArray.length ? sizesArray : ["Free Size"],
+                        description: desc
+                    };
+                    showToast("Product updated successfully!");
+                }
+            } else {
+                // Add new
+                const newProd = {
+                    id: "prod-" + Date.now(),
+                    title,
+                    category,
+                    image: imgSrc,
+                    price,
+                    mrp,
+                    tag,
+                    sizes: sizesArray.length ? sizesArray : ["Free Size"],
+                    description: desc
+                };
+                products.unshift(newProd);
+                showToast("New product published to Ashok Collection!");
+            }
+
+            // Persist to localStorage
+            localStorage.setItem('ashok_collection_products', JSON.stringify(products));
+
+            // Refresh UI
+            resetProductForm();
+            renderProducts();
+            switchAdminTab('products');
+        }
+
+        function resetProductForm() {
+            document.getElementById('edit-product-id').value = '';
+            document.getElementById('prod-title').value = '';
+            document.getElementById('prod-img-src').value = '';
+            document.getElementById('prod-price').value = '';
+            document.getElementById('prod-mrp').value = '';
+            document.getElementById('prod-desc').value = '';
+            document.getElementById('prod-sizes').value = 'S, M, L, XL, XXL';
+            document.getElementById('live-img-preview').src = 'https://placehold.co/150x150/f97316/ffffff?text=Image+Preview';
+            document.getElementById('form-title').textContent = 'Add New Product to Ashok Collection';
+            document.getElementById('submit-prod-btn').innerHTML = '<i class="fa-solid fa-floppy-disk mr-1.5"></i> Save & Publish Product';
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function editProductFromTable(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('edit-product-id').value = p.id;
+            document.getElementById('prod-title').value = p.title;
+            document.getElementById('prod-category').value = p.category;
+            document.getElementById('prod-img-src').value = p.image;
+            document.getElementById('prod-price').value = p.price;
+            document.getElementById('prod-mrp').value = p.mrp || '';
+            document.getElementById('prod-tag').value = p.tag || 'Trending';
+            document.getElementById('prod-sizes').value = (p.sizes || []).join(', ');
+            document.getElementById('prod-desc').value = p.description;
+
+            previewImageInput(p.image);
+
+            document.getElementById('form-title').textContent = `Editing: ${p.title}`;
+            document.getElementById('submit-prod-btn').innerHTML = '<i class="fa-solid fa-check mr-1.5"></i> Update Product';
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+
+            switchAdminTab('add');
+        }
+
+        function deleteProduct(id) {
+            if (!window.confirm("Are you sure you want to remove this product from the catalog?")) return;
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('ashok_collection_products', JSON.stringify(products));
+            renderProducts();
+            renderAdminProductsTable();
+            showToast("Product deleted from catalog.");
+        }
+
+        function renderAdminProductsTable() {
+            const tbody = document.getElementById('admin-product-table-body');
+            document.getElementById('admin-product-count').textContent = products.length;
+
+            if (products.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-stone-400">No items available. Click 'Add New Product' above.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = products.map(p => `
+                <tr class="hover:bg-stone-50 transition">
+                    <td class="py-3 px-4 flex items-center space-x-3">
+                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border border-stone-200 shrink-0" onerror="this.src='https://placehold.co/50x50?text=IMG'">
+                        <div>
+                            <div class="font-bold text-stone-800 line-clamp-1">${p.title}</div>
+                            <span class="text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded font-semibold">${p.tag || 'Catalog'}</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-4 font-medium text-stone-600">${p.category}</td>
+                    <td class="py-3 px-4">
+                        <span class="font-bold text-stone-900">₹${p.price.toLocaleString('en-IN')}</span>
+                        ${p.mrp ? `<span class="text-[10px] text-stone-400 line-through ml-1">₹${p.mrp}</span>` : ''}
+                    </td>
+                    <td class="py-3 px-4 text-[11px] text-stone-500">${(p.sizes || []).join(', ')}</td>
+                    <td class="py-3 px-4 text-right space-x-2">
+                        <button onclick="editProductFromTable('${p.id}')" class="px-2.5 py-1 rounded bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold" title="Edit">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button onclick="deleteProduct('${p.id}')" class="px-2.5 py-1 rounded bg-red-50 hover:bg-red-100 text-red-600 font-semibold" title="Delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // STORE LOCATION ADMIN MANAGEMENT
+        function toggleStoreAddForm() {
+            const form = document.getElementById('store-add-form');
+            form.classList.toggle('hidden');
+        }
+
+        function handleSaveStore(e) {
+            e.preventDefault();
+            const name = document.getElementById('store-name').value.trim();
+            const timings = document.getElementById('store-timing').value.trim();
+            const phone = document.getElementById('store-phone').value.trim();
+            const address = document.getElementById('store-address').value.trim();
+            const mapsUrl = document.getElementById('store-maps-url').value.trim() || "https://share.google/kWvgWTPQqy2h4Cjl8";
+
+            const newStore = {
+                id: "store-" + Date.now(),
+                name,
+                timings,
+                phone,
+                address,
+                mapsUrl
+            };
+
+            stores.push(newStore);
+            localStorage.setItem('ashok_collection_stores', JSON.stringify(stores));
+
+            // Reset form
+            document.getElementById('store-name').value = '';
+            document.getElementById('store-timing').value = '';
+            document.getElementById('store-phone').value = '';
+            document.getElementById('store-address').value = '';
+            document.getElementById('store-maps-url').value = '';
+            toggleStoreAddForm();
+
+            renderStores();
+            showToast("Store location added!");
+        }
+
+        function deleteStore(storeId) {
+            if (!window.confirm("Remove this store branch?")) return;
+            stores = stores.filter(s => s.id !== storeId);
+            localStorage.setItem('ashok_collection_stores', JSON.stringify(stores));
+            renderStores();
+            showToast("Store removed.");
+        }
+
+        function renderAdminStoresList() {
+            const list = document.getElementById('admin-stores-list');
+            document.getElementById('admin-store-count').textContent = stores.length;
+
+            list.innerHTML = stores.map(s => `
+                <div class="p-3 bg-white rounded-xl border border-stone-200 flex items-center justify-between text-xs">
+                    <div>
+                        <div class="font-bold text-stone-900">${s.name}</div>
+                        <div class="text-stone-500">${s.address}</div>
+                        <div class="text-[10px] text-brand-600 font-medium">Timings: ${s.timings} | Ph: ${s.phone}</div>
+                    </div>
+                    <button onclick="deleteStore('${s.id}')" class="px-2 py-1 text-red-600 hover:bg-red-50 rounded" title="Delete Store">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Contact Form Submission (Redirects straight to WhatsApp)
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const phone = document.getElementById('contact-phone').value.trim();
+            const interest = document.getElementById('contact-interest').value;
+            const msg = document.getElementById('contact-msg').value.trim();
+
+            const inquiryText = `*NEW WEBSITE INQUIRY - ASHOK COLLECTION*\n` +
+                                `------------------------------------\n` +
+                                `*Customer Name:* ${name}\n` +
+                                `*Customer Phone:* ${phone}\n` +
+                                `*Interested Category:* ${interest}\n` +
+                                `*Message / Requirement:*\n${msg}\n` +
+                                `------------------------------------\n` +
+                                `Sent via Ashok Collection Online Storefront.`;
+
+            const waUrl = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(inquiryText)}`;
+            window.open(waUrl, '_blank');
+
+            showToast("Opening WhatsApp with your inquiry message...");
+            e.target.reset();
+        }
+
+        // Mobile drawer toggler
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-xl';
+            }
+        }
+    </script>
+</body>
+</html>
